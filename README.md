@@ -26,6 +26,7 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | [BasicWriteExample](src/main/java/io/github/scndry/examples/write/BasicWriteExample.java) | Write to file, OutputStream, named sheet, byte array |
 | [StyleWriteExample](src/main/java/io/github/scndry/examples/write/StyleWriteExample.java) | Data formats, fonts, borders, fills, header styles |
 | [MergeWriteExample](src/main/java/io/github/scndry/examples/write/MergeWriteExample.java) | Vertical cell merging with nested lists |
+| [SequenceWriteExample](src/main/java/io/github/scndry/examples/write/SequenceWriteExample.java) | Stream rows one at a time with SequenceWriter |
 
 ## Nested Objects
 
@@ -38,6 +39,8 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | Example | Description |
 |---------|-------------|
 | [JacksonAnnotationExample](src/main/java/io/github/scndry/examples/jackson/JacksonAnnotationExample.java) | @JsonProperty, @JsonIgnore, @JsonPropertyOrder, enum mapping |
+| [JsonViewExample](src/main/java/io/github/scndry/examples/jackson/JsonViewExample.java) | View-based column filtering — export different subsets per audience |
+| [MixInExample](src/main/java/io/github/scndry/examples/jackson/MixInExample.java) | Apply @DataGrid to third-party classes without modifying source |
 
 ## Styling
 
