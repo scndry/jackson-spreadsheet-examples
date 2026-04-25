@@ -156,3 +156,7 @@ implementation("com.h2database:h2:2.2.224")
 - [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.2.1
 - Spring Boot 3.5 (web examples only)
 - H2 (file-backed shared strings examples only)
+
+## License
+
+[Apache License 2.0](LICENSE)
