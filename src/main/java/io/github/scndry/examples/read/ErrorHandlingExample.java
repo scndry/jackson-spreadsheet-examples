@@ -2,7 +2,6 @@ package io.github.scndry.examples.read;
 
 import io.github.scndry.jackson.dataformat.spreadsheet.SheetMappingIterator;
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
-import io.github.scndry.jackson.dataformat.spreadsheet.deser.SheetInput;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class ErrorHandlingExample {
         var rows = new ArrayList<Employee>();
         var errors = new ArrayList<String>();
 
-        try (SheetMappingIterator<Employee> iter = reader.readValues(SheetInput.source(file))) {
+        try (SheetMappingIterator<Employee> iter = reader.readValues(file)) {
             while (iter.hasNext()) {
                 try {
                     rows.add(iter.next());

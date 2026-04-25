@@ -49,7 +49,7 @@ public class BasicWriteExample {
 
     public static void writeToOutputStream(OutputStream out, List<Order> orders) throws Exception {
         var mapper = new SpreadsheetMapper();
-        mapper.writeValue(SheetOutput.target(out), orders, Order.class);
+        mapper.writeValue(out, orders, Order.class);
     }
 
     public static void writeWithSheetName(File file, List<Order> orders, String sheetName) throws Exception {

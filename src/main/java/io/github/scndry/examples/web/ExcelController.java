@@ -2,8 +2,6 @@ package io.github.scndry.examples.web;
 
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataGrid;
-import io.github.scndry.jackson.dataformat.spreadsheet.deser.SheetInput;
-import io.github.scndry.jackson.dataformat.spreadsheet.ser.SheetOutput;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,7 +46,7 @@ public class ExcelController {
                 new UserData("Alice", "alice@example.com", 30),
                 new UserData("Bob", "bob@example.com", 25));
 
-        mapper.writeValue(SheetOutput.target(response.getOutputStream()), users, UserData.class);
+        mapper.writeValue(response.getOutputStream(), users, UserData.class);
     }
 
     /**
@@ -56,7 +54,6 @@ public class ExcelController {
      */
     @PostMapping("/upload")
     public List<UserData> upload(@RequestParam("file") MultipartFile file) throws Exception {
-        return mapper.readValues(
-                SheetInput.source(file.getInputStream()), UserData.class);
+        return mapper.readValues(file.getInputStream(), UserData.class);
     }
 }

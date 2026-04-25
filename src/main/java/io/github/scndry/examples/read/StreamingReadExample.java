@@ -1,7 +1,6 @@
 package io.github.scndry.examples.read;
 
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
-import io.github.scndry.jackson.dataformat.spreadsheet.deser.SheetInput;
 import io.github.scndry.jackson.dataformat.spreadsheet.SheetMappingIterator;
 import io.github.scndry.jackson.dataformat.spreadsheet.deser.SheetLocation;
 
@@ -35,7 +34,7 @@ public class StreamingReadExample {
     public static void iterateWithLocation(File file, Consumer<Employee> consumer) throws Exception {
         var mapper = new SpreadsheetMapper();
         var reader = mapper.sheetReaderFor(Employee.class);
-        try (SheetMappingIterator<Employee> iter = reader.readValues(SheetInput.source(file))) {
+        try (SheetMappingIterator<Employee> iter = reader.readValues(file)) {
             while (iter.hasNext()) {
                 Employee e = iter.next();
                 SheetLocation loc = iter.getCurrentLocation();
@@ -51,7 +50,7 @@ public class StreamingReadExample {
         var mapper = new SpreadsheetMapper();
         var reader = mapper.sheetReaderFor(Employee.class);
         var batch = new ArrayList<Employee>(batchSize);
-        try (SheetMappingIterator<Employee> iter = reader.readValues(SheetInput.source(file))) {
+        try (SheetMappingIterator<Employee> iter = reader.readValues(file)) {
             while (iter.hasNext()) {
                 batch.add(iter.next());
                 if (batch.size() >= batchSize) {

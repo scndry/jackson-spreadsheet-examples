@@ -3,7 +3,6 @@ package io.github.scndry.examples.write;
 import com.fasterxml.jackson.databind.SequenceWriter;
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataGrid;
-import io.github.scndry.jackson.dataformat.spreadsheet.ser.SheetOutput;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,7 +41,7 @@ public class SequenceWriteExample {
     public static void write(File file, int rowCount) throws Exception {
         var mapper = new SpreadsheetMapper();
         var writer = mapper.sheetWriterFor(LogEntry.class);
-        try (SequenceWriter seq = writer.writeValues(SheetOutput.target(file))) {
+        try (SequenceWriter seq = writer.writeValues(file)) {
             for (int i = 0; i < rowCount; i++) {
                 seq.write(new LogEntry(
                         "2024-01-15T10:00:" + String.format("%02d", i % 60),

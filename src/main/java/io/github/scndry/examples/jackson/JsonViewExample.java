@@ -2,7 +2,6 @@ package io.github.scndry.examples.jackson;
 
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataGrid;
-import io.github.scndry.jackson.dataformat.spreadsheet.ser.SheetOutput;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -55,7 +54,7 @@ public class JsonViewExample {
     public static void writeSummary(File file, List<Report> reports) throws Exception {
         var mapper = new SpreadsheetMapper();
         mapper.sheetWriterForWithView(Report.class, Views.Summary.class)
-                .writeValue(SheetOutput.target(file), reports);
+                .writeValue(file, reports);
     }
 
     /**
@@ -64,6 +63,6 @@ public class JsonViewExample {
     public static void writeDetail(File file, List<Report> reports) throws Exception {
         var mapper = new SpreadsheetMapper();
         mapper.sheetWriterForWithView(Report.class, Views.Detail.class)
-                .writeValue(SheetOutput.target(file), reports);
+                .writeValue(file, reports);
     }
 }
