@@ -7,6 +7,16 @@ import java.util.List;
 
 /**
  * Write a list of POJOs to an Excel file — one line.
+ *
+ * <pre>
+ * +--------+----------+-------+
+ * | name   | quantity | price |
+ * +--------+----------+-------+
+ * | Apple  |       10 |  1.50 |
+ * | Banana |       20 |  0.80 |
+ * | Cherry |        5 |  3.00 |
+ * +--------+----------+-------+
+ * </pre>
  */
 public class SimpleWriteExample {
 

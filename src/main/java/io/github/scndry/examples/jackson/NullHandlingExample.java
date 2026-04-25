@@ -12,6 +12,16 @@ import java.util.List;
 
 /**
  * {@code @JsonInclude(NON_NULL)} skips null cells on write.
+ * Null fields produce blank cells instead of writing "null".
+ *
+ * <pre>
+ * +-------+----------+-------------------+
+ * | name  | nickname | email             |
+ * +-------+----------+-------------------+
+ * | Alice |          | alice@example.com |
+ * | Bob   | Bobby    |                   |
+ * +-------+----------+-------------------+
+ * </pre>
  */
 public class NullHandlingExample {
 

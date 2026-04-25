@@ -11,8 +11,18 @@ import lombok.NoArgsConstructor;
 import java.io.File;
 
 /**
- * Stream rows one at a time using Jackson's SequenceWriter.
+ * Stream rows one at a time using Jackson's {@code SequenceWriter}.
  * Useful when data is generated on-the-fly (database cursor, API pagination).
+ *
+ * <pre>
+ * +---------------------+-------+---------------+
+ * | timestamp           | level | message       |
+ * +---------------------+-------+---------------+
+ * | 2024-01-15T10:00:00 | ERROR | Log message 0 |
+ * | 2024-01-15T10:00:01 | INFO  | Log message 1 |
+ * | ...                 | ...   | ...           |
+ * +---------------------+-------+---------------+
+ * </pre>
  */
 public class SequenceWriteExample {
 

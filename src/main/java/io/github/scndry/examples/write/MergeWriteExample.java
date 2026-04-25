@@ -13,6 +13,18 @@ import java.util.List;
 
 /**
  * Vertical cell merging with nested lists.
+ *
+ * <pre>
+ * +----------+---------+-----+-------+
+ * | Order ID | product | qty | Total |
+ * +----------+---------+-----+-------+
+ * |          | Apple   |   3 |       |
+ * |    1     +---------+-----+  8.50 |
+ * |          | Banana  |   5 |       |
+ * +----------+---------+-----+-------+
+ * |    2     | Cherry  |   2 |  6.00 |
+ * +----------+---------+-----+-------+
+ * </pre>
  */
 public class MergeWriteExample {
 

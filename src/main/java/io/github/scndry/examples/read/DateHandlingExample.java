@@ -17,6 +17,17 @@ import java.util.List;
  * Excel dates are stored as numeric serial values.
  * {@code ExcelDateModule} is registered by default — automatic conversion
  * between Java date types and Excel date numbers. No setup needed.
+ *
+ * <p>With {@code StylesBuilder.simple()}, date columns are formatted automatically:</p>
+ *
+ * <pre>
+ * +--------+------------+---------------------+
+ * | title  | eventDate  | createdAt           |
+ * +--------+------------+---------------------+
+ * | Launch | 2024-06-15 | 2024-06-01 09:00:00 |
+ * | Review | 2024-07-01 | 2024-06-20 14:30:00 |
+ * +--------+------------+---------------------+
+ * </pre>
  */
 public class DateHandlingExample {
 

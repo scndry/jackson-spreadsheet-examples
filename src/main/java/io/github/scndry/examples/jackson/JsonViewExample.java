@@ -13,6 +13,15 @@ import java.util.List;
 
 /**
  * View-based column filtering — export different column subsets for different audiences.
+ *
+ * <pre>
+ * Summary view:              Detail view:
+ * +------+-------+           +------+-------+-----------+-------+
+ * | name | total |           | name | total | breakdown | notes |
+ * +------+-------+           +------+-------+-----------+-------+
+ * | Q1   |  1000 |           | Q1   |  1000 | detail... | ...   |
+ * +------+-------+           +------+-------+-----------+-------+
+ * </pre>
  */
 public class JsonViewExample {
 

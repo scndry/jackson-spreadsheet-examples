@@ -16,6 +16,19 @@ import java.util.List;
 
 /**
  * Direct POI Sheet/Workbook integration — you control the workbook lifecycle.
+ * Create multiple sheets, add formulas, or read from specific sheets.
+ *
+ * <pre>
+ * multiSheet():                    withFormula():
+ * [Q1]  [Q2]                      +--------+----------+---------+
+ * +--------+-----+--------+       | product| quantity | revenue |
+ * | product| qty | revenue|       +--------+----------+---------+
+ * +--------+-----+--------+       | Apple  |       50 |  500.00 |
+ * | Apple  |  50 | 500.00 |       | Banana |       30 |  150.00 |
+ * +--------+-----+--------+       +--------+----------+---------+
+ *                                 | TOTAL  |          |  650.00 | ← SUM formula
+ *                                 +--------+----------+---------+
+ * </pre>
  */
 public class POIIntegrationExample {
 

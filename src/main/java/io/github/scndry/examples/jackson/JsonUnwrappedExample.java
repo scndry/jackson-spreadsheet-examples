@@ -13,6 +13,15 @@ import java.util.List;
 /**
  * {@code @JsonUnwrapped} flattens nested objects with leaf field names as headers
  * instead of the default path-based headers ({@code address/city} → {@code city}).
+ *
+ * <pre>
+ * Without @JsonUnwrapped:     With @JsonUnwrapped:
+ * +------+--------------+     +------+-------+---------+
+ * | name | address/city |     | name | city  | zipcode |
+ * +------+--------------+     +------+-------+---------+
+ * | Alice| Seoul        |     | Alice| Seoul | 12345   |
+ * +------+--------------+     +------+-------+---------+
+ * </pre>
  */
 public class JsonUnwrappedExample {
 

@@ -11,7 +11,29 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Standard Jackson annotations work seamlessly with @DataGrid classes.
+ * Standard Jackson annotations work seamlessly with {@code @DataGrid} classes.
+ *
+ * <p>{@code @JsonProperty} renames columns, {@code @JsonIgnore} excludes fields,
+ * {@code @JsonPropertyOrder} controls column order, and enum {@code @JsonProperty}
+ * customizes cell values.</p>
+ *
+ * <pre>
+ * Person (internalId excluded by @JsonIgnore, name renamed to fullName):
+ * +----------+-----+----------+
+ * | fullName | age | role     |
+ * +----------+-----+----------+
+ * | Alice Kim|  30 | Engineer |
+ * | Bob Lee  |  25 | Designer |
+ * +----------+-----+----------+
+ *
+ * Status (enum values customized by @JsonProperty):
+ * +--------+----------+
+ * | label  | priority |
+ * +--------+----------+
+ * | Task A | High     |
+ * | Task B | Low      |
+ * +--------+----------+
+ * </pre>
  */
 public class JacksonAnnotationExample {
 

@@ -14,6 +14,15 @@ import java.util.List;
 
 /**
  * Basic write operations: file, OutputStream, named sheet, byte array.
+ *
+ * <pre>
+ * +----------+---------+----------+-------+
+ * | Order ID | product | quantity | price |
+ * +----------+---------+----------+-------+
+ * |        1 | Apple   |       10 |  1.50 |
+ * |        2 | Banana  |       20 |  0.80 |
+ * +----------+---------+----------+-------+
+ * </pre>
  */
 public class BasicWriteExample {
 

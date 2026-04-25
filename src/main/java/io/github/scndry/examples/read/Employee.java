@@ -7,6 +7,15 @@ import lombok.NoArgsConstructor;
 
 /**
  * Shared model for read examples — mixed types (String, int, boolean).
+ *
+ * <pre>
+ * +-------+------------+--------+--------+
+ * | name  | department | salary | active |
+ * +-------+------------+--------+--------+
+ * | Alice | Engineering|  80000 | true   |
+ * | Bob   | Design     |  75000 | false  |
+ * +-------+------------+--------+--------+
+ * </pre>
  */
 @Data
 @NoArgsConstructor

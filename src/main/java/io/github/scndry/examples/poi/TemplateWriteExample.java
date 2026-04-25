@@ -14,6 +14,16 @@ import java.util.List;
 /**
  * Template-based writing — open an existing template, write data into it.
  * Pre-formatted headers, charts, formulas, and conditional formatting are preserved.
+ *
+ * <pre>
+ * Template (template.xlsx):        Output (output.xlsx):
+ * +------+-------+-------+        +------+-------+-------+
+ * | Item | Count | Total | ← kept | Item | Count | Total |
+ * +------+-------+-------+        +------+-------+-------+
+ * |      |       |       |        | Pen  |    50 | 25.00 |
+ * +------+-------+-------+        | Book |    10 | 89.90 |
+ *                                  +------+-------+-------+
+ * </pre>
  */
 public class TemplateWriteExample {
 

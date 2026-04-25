@@ -21,6 +21,15 @@ import java.util.List;
 /**
  * Custom serializer/deserializer for cell values.
  * Boolean displayed as "Yes"/"No" instead of true/false.
+ *
+ * <pre>
+ * +------------+-----------+
+ * | title      | completed |
+ * +------------+-----------+
+ * | Write docs | Yes       |
+ * | Fix bug    | No        |
+ * +------------+-----------+
+ * </pre>
  */
 public class CustomSerializerExample {
 

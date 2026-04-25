@@ -13,6 +13,20 @@ import java.util.List;
 
 /**
  * Large file handling: streaming writer (default), file-backed shared strings, encrypted store.
+ *
+ * <pre>
+ * Default (in-memory SST):        File-backed SST (constant heap):
+ * Heap ████████████░░░ ~512MB      Heap ████░░░░░░░░░░░ ~128MB
+ * Throughput: fastest               + H2 temp file on disk
+ *
+ * FILE_BACKED_SHARED_STRINGS:     ENCRYPT_FILE_BACKED_STORE:
+ * - Constant heap usage            - AES encryption on temp file
+ * - Requires H2 on classpath       - For sensitive data at rest
+ *
+ * USE_POI_USER_MODEL:
+ * - Falls back to POI SXSSFWorkbook
+ * - Needed for auto-size columns
+ * </pre>
  */
 public class LargeFileExample {
 

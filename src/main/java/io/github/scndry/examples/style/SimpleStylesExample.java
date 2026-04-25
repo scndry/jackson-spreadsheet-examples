@@ -24,6 +24,16 @@ import java.util.List;
  *   <li>{@code Date}/{@code Calendar}/{@code LocalDateTime} → {@code yyyy-mm-dd hh:mm:ss}</li>
  *   <li>{@code LocalDate} → {@code yyyy-mm-dd}</li>
  * </ul>
+ *
+ * <pre>
+ * +-------------+----------+-----------+--------+------------+
+ * | description | quantity |    amount | tax    | date       |
+ * +-------------+----------+-----------+--------+------------+
+ * | Sale        |       10 |  1,500.50 | 135.05 | 2024-01-15 |
+ * | Refund      |        1 |   -200.00 | -18.00 | 2024-01-20 |
+ * +-------------+----------+-----------+--------+------------+
+ *                  #,##0      #,##0.00     @      yyyy-mm-dd
+ * </pre>
  */
 public class SimpleStylesExample {
 

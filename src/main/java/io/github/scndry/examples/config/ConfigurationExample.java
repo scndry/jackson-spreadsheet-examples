@@ -12,6 +12,24 @@ import java.util.List;
 
 /**
  * Configuration options: origin, header, column reordering, blank row handling.
+ *
+ * <pre>
+ * Default (origin A1):             With origin("B2"):
+ *   A     B                          A     B      C
+ * 1 name  value                    1
+ * 2 Alice   100                    2       name   value
+ * 3 Bob     200                    3       Alice    100
+ *
+ * useHeader(false):                columnReordering(true):
+ * 1 Alice   100  ← no header      Matches columns by header name,
+ * 2 Bob     200                    not position — tolerates reordered columns.
+ *
+ * BREAK_ON_BLANK_ROW:
+ * 1 name  value
+ * 2 Alice   100
+ * 3                ← reading stops here
+ * 4 Bob     200    ← not read
+ * </pre>
  */
 public class ConfigurationExample {
 

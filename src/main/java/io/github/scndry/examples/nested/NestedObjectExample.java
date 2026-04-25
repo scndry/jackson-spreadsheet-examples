@@ -12,9 +12,14 @@ import java.util.List;
 /**
  * Nested POJOs automatically flatten to columns on write and reconstruct on read.
  *
- * | id | name | zipcode | city  | title | salary |
- * |----|------|---------|-------|-------|--------|
- * | 1  | Alice| 12345   | Seoul | SRE   | 80000  |
+ * <pre>
+ * +----+-------+------------------+---------------+--------------------+--------+
+ * | id | name  | address/zipcode  | address/city  | employment/title   | salary |
+ * +----+-------+------------------+---------------+--------------------+--------+
+ * |  1 | Alice | 12345            | Seoul         | SRE                |  80000 |
+ * |  2 | Bob   | 67890            | Busan         | Backend            |  75000 |
+ * +----+-------+------------------+---------------+--------------------+--------+
+ * </pre>
  */
 public class NestedObjectExample {
 

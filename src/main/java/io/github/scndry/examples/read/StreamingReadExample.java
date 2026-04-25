@@ -12,6 +12,17 @@ import java.util.function.Consumer;
 
 /**
  * Process large files row-by-row without loading all rows into memory.
+ * Uses {@code SheetMappingIterator} for one-at-a-time access with location tracking.
+ *
+ * <pre>
+ * +-------+------------+--------+--------+
+ * | name  | department | salary | active |  ← reads row-by-row
+ * +-------+------------+--------+--------+
+ * | Alice | Engineering|  80000 | true   |  → consumer.accept(alice)
+ * | Bob   | Design     |  75000 | false  |  → consumer.accept(bob)
+ * | ...   | ...        |    ... | ...    |
+ * +-------+------------+--------+--------+
+ * </pre>
  */
 public class StreamingReadExample {
 

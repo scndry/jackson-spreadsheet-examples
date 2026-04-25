@@ -13,6 +13,15 @@ import java.util.List;
 
 /**
  * Derive a new style from an existing one with {@code cellStyle("name", "cloneFrom")}.
+ * {@code "highlight"} inherits {@code "base"} (border, format) and adds a green fill.
+ *
+ * <pre>
+ * +----------+-------+
+ * | category | count |       "base" style: #,##0 format, thin border
+ * +----------+-------+       "highlight" style: base + green fill
+ * | Sales    | 1,500 |
+ * +----------+-------+
+ * </pre>
  */
 public class CloneStyleExample {
 

@@ -7,6 +7,14 @@ import lombok.NoArgsConstructor;
 
 /**
  * Simple POJO mapped to a spreadsheet row. {@code @DataGrid} marks it as the root type.
+ *
+ * <pre>
+ * +--------+----------+--------+
+ * | name   | quantity | price  |
+ * +--------+----------+--------+
+ * | Laptop |       10 | 999.99 |
+ * +--------+----------+--------+
+ * </pre>
  */
 @Data
 @NoArgsConstructor

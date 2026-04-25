@@ -14,6 +14,14 @@ import java.util.List;
 
 /**
  * Apply cell styles: data formats, fonts, borders, fills, header styles.
+ *
+ * <pre>
+ * +----------+----------+-----------+
+ * | customer | quantity |    amount | ← header styled (bold, grey fill)
+ * +----------+----------+-----------+
+ * | Alice    |      100 |  1,999.99 | ← quantity: #,##0  amount: #,##0.00
+ * +----------+----------+-----------+
+ * </pre>
  */
 public class StyleWriteExample {
 
