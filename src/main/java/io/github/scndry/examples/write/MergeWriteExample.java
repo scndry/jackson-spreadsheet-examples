@@ -12,7 +12,10 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Vertical cell merging with nested lists.
+ * Vertical cell merging — merge parent cells when child rows repeat (e.g., order with multiple items).
+ *
+ * <p>Set {@code @DataColumn(merge = OptBoolean.TRUE)} on fields that should span across
+ * child rows. The library handles merge region creation automatically.</p>
  *
  * <pre>
  * +----------+---------+-----+-------+

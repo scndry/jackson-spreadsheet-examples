@@ -13,7 +13,11 @@ import java.io.OutputStream;
 import java.util.List;
 
 /**
- * Basic write operations: file, OutputStream, named sheet, byte array.
+ * Export data to Excel (XLSX) — multiple output targets: file, OutputStream, named sheet, byte array.
+ *
+ * <p>Covers four common export patterns. OutputStream is ideal for Spring Boot download endpoints,
+ * byte array for in-memory processing. For styled exports, see
+ * {@link StyleWriteExample}.</p>
  *
  * <pre>
  * +----------+---------+----------+-------+

@@ -6,7 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Simple POJO mapped to a spreadsheet row. {@code @DataGrid} marks it as the root type.
+ * Simple POJO mapped to an Excel (XLSX) spreadsheet row.
+ * {@code @DataGrid} marks it as the root type for serialization/deserialization.
+ *
+ * <p>Each field becomes a column. No additional configuration needed —
+ * just annotate with {@code @DataGrid} and pass to {@link io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper}.</p>
  *
  * <pre>
  * +--------+----------+--------+

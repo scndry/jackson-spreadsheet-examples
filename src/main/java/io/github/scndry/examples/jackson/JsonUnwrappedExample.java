@@ -11,8 +11,11 @@ import java.io.File;
 import java.util.List;
 
 /**
- * {@code @JsonUnwrapped} flattens nested objects with leaf field names as headers
- * instead of the default path-based headers ({@code address/city} → {@code city}).
+ * Flatten nested objects into simple column names using {@code @JsonUnwrapped}.
+ *
+ * <p>By default, nested object fields produce path-based headers ({@code address/city}).
+ * {@code @JsonUnwrapped} promotes leaf field names to top-level headers ({@code city}),
+ * producing a cleaner spreadsheet layout.</p>
  *
  * <pre>
  * Without @JsonUnwrapped:     With @JsonUnwrapped:

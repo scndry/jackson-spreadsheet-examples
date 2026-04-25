@@ -8,8 +8,11 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Mix-in: apply {@code @DataGrid} to third-party classes without modifying their source.
- * Column headers are overridden by {@code @DataColumn} on the mix-in.
+ * Export third-party classes to Excel without modifying their source — use Jackson Mix-ins.
+ *
+ * <p>Define a mix-in class with {@code @DataGrid} and {@code @DataColumn} annotations,
+ * then register it on the mapper. Useful for DTOs from external libraries, generated code,
+ * or legacy classes you cannot annotate directly.</p>
  *
  * <pre>
  * +------+-------------+--------+

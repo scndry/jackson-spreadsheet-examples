@@ -13,13 +13,17 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Apply cell styles: data formats, fonts, borders, fills, header styles.
+ * Format and style Excel exports — number formats, fonts, borders, fills, and header styling.
+ *
+ * <p>Use {@link io.github.scndry.jackson.dataformat.spreadsheet.schema.style.StylesBuilder} to define
+ * reusable cell styles. For automatic type-based formatting without manual configuration,
+ * see {@link io.github.scndry.examples.style.SimpleStylesExample}.</p>
  *
  * <pre>
  * +----------+----------+-----------+
- * | customer | quantity |    amount | ← header styled (bold, grey fill)
+ * | customer | quantity |    amount | -- header styled (bold, grey fill)
  * +----------+----------+-----------+
- * | Alice    |      100 |  1,999.99 | ← quantity: #,##0  amount: #,##0.00
+ * | Alice    |      100 |  1,999.99 | -- quantity: #,##0  amount: #,##0.00
  * +----------+----------+-----------+
  * </pre>
  */

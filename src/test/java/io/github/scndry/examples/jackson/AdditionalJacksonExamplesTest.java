@@ -32,9 +32,8 @@ class AdditionalJacksonExamplesTest {
             assertThat(header.getCell(2).getStringCellValue()).isEqualTo("zipcode");
         }
 
-        // Round-trip read requires 1.2.1+ (hasTextCharacters fix)
-        // var result = JsonUnwrappedExample.read(file);
-        // assertThat(result).get(0).getAddress()).isEqualTo(new Address("Seoul", "12345"));
+        var result = JsonUnwrappedExample.read(file);
+        assertThat(result.get(0).getAddress()).isEqualTo(new Address("Seoul", "12345"));
     }
 
     @Test

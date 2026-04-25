@@ -11,8 +11,11 @@ import lombok.NoArgsConstructor;
 import java.io.File;
 
 /**
- * Stream rows one at a time using Jackson's {@code SequenceWriter}.
- * Useful when data is generated on-the-fly (database cursor, API pagination).
+ * Stream rows to Excel one at a time — write without holding the full dataset in memory.
+ *
+ * <p>Uses Jackson's {@code SequenceWriter} to emit rows incrementally.
+ * Ideal for database cursors, API pagination, or any data source where rows arrive on-the-fly.
+ * For reading large files in a streaming fashion, see {@link io.github.scndry.examples.read.StreamingReadExample}.</p>
  *
  * <pre>
  * +---------------------+-------+---------------+

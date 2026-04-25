@@ -15,8 +15,11 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 /**
- * Direct POI Sheet/Workbook integration — you control the workbook lifecycle.
- * Create multiple sheets, add formulas, or read from specific sheets.
+ * Integrate with Apache POI directly — multi-sheet workbooks, formulas, and advanced features.
+ *
+ * <p>Use Jackson for data binding and POI for features beyond the annotation model
+ * (charts, conditional formatting, formulas). You control the workbook lifecycle;
+ * Jackson writes data into the sheets you provide.</p>
  *
  * <pre>
  * multiSheet():                    withFormula():
@@ -26,7 +29,7 @@ import java.util.List;
  * +--------+-----+--------+       | Apple  |       50 |  500.00 |
  * | Apple  |  50 | 500.00 |       | Banana |       30 |  150.00 |
  * +--------+-----+--------+       +--------+----------+---------+
- *                                 | TOTAL  |          |  650.00 | ← SUM formula
+ *                                 | TOTAL  |          |  650.00 | -- SUM formula
  *                                 +--------+----------+---------+
  * </pre>
  */

@@ -7,7 +7,11 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Read from a specific sheet by name or index.
+ * Read data from a specific sheet in a multi-sheet Excel workbook — select by name or index.
+ *
+ * <p>Useful for workbooks containing multiple datasets (e.g., quarterly reports,
+ * per-department data). For reading multiple sheets from a single POI Workbook,
+ * see {@link io.github.scndry.examples.poi.POIIntegrationExample}.</p>
  */
 public class MultiSheetReadExample {
 

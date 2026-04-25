@@ -12,7 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Large file handling: streaming writer (default), file-backed shared strings, encrypted store.
+ * Write large Excel files (100K+ rows) efficiently — choose a memory strategy.
+ *
+ * <p>Default streaming writer handles most cases. For high-cardinality string columns,
+ * file-backed shared strings keeps heap usage constant. Encrypted store adds AES protection
+ * for sensitive data. {@code USE_POI_USER_MODEL} falls back to POI's SXSSFWorkbook
+ * when you need auto-size columns or other POI-specific features.</p>
  *
  * <pre>
  * Default (in-memory SST):        File-backed SST (constant heap):

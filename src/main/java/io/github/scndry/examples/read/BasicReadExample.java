@@ -6,7 +6,10 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Read all rows from an Excel file into typed POJOs.
+ * Import Excel (XLSX) data into Java objects — read all rows or just the first row.
+ *
+ * <p>Use {@code readAll} for small-to-medium files loaded into memory at once.
+ * For large files (100K+ rows), use {@link StreamingReadExample} to avoid OutOfMemoryError.</p>
  */
 public class BasicReadExample {
 

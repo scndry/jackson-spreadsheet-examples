@@ -11,8 +11,10 @@ import java.io.File;
 import java.util.List;
 
 /**
- * {@code @JsonInclude(NON_NULL)} skips null cells on write.
- * Null fields produce blank cells instead of writing "null".
+ * Handle null fields in Excel exports — skip null cells with {@code @JsonInclude(NON_NULL)}.
+ *
+ * <p>Without this annotation, null fields produce cells containing the text "null".
+ * With {@code NON_NULL}, null fields become blank cells — the expected behavior for optional data.</p>
  *
  * <pre>
  * +-------+----------+-------------------+

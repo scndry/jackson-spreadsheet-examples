@@ -6,7 +6,12 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Write a list of POJOs to an Excel file — one line.
+ * Export Java objects to an Excel file (XLSX) — one line.
+ * The simplest way to write data: pass a list and a type, get an Excel file.
+ *
+ * <p>Alternative to Apache POI's verbose Sheet/Row/Cell API.
+ * For styled exports, see {@link io.github.scndry.examples.write.StyleWriteExample}.
+ * For streaming large datasets, see {@link io.github.scndry.examples.write.SequenceWriteExample}.</p>
  *
  * <pre>
  * +--------+----------+-------+

@@ -10,7 +10,12 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Nested POJOs automatically flatten to columns on write and reconstruct on read.
+ * Flatten nested Java objects into Excel columns — automatic denormalization and reconstruction.
+ *
+ * <p>Nested POJOs (Address, Employment) become flat columns with path-based headers
+ * ({@code address/city}, {@code employment/title}). On read, the flat data reconstructs
+ * the original object hierarchy. For flat leaf-name headers instead of paths,
+ * see {@link io.github.scndry.examples.jackson.JsonUnwrappedExample}.</p>
  *
  * <pre>
  * +----+-------+------------------+---------------+--------------------+--------+

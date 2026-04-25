@@ -12,8 +12,10 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Derive a new style from an existing one with {@code cellStyle("name", "cloneFrom")}.
- * {@code "highlight"} inherits {@code "base"} (border, format) and adds a green fill.
+ * Inherit and extend cell styles — derive a new style from an existing one.
+ *
+ * <p>Use {@code cellStyle("name", "cloneFrom")} to clone a base style and override specific properties.
+ * Avoids duplicating common formatting (borders, number formats) across multiple style definitions.</p>
  *
  * <pre>
  * +----------+-------+

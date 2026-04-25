@@ -11,11 +11,11 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Standard Jackson annotations work seamlessly with {@code @DataGrid} classes.
+ * Reuse Jackson annotations in Excel exports — rename columns, exclude fields, control order, customize enum values.
  *
- * <p>{@code @JsonProperty} renames columns, {@code @JsonIgnore} excludes fields,
- * {@code @JsonPropertyOrder} controls column order, and enum {@code @JsonProperty}
- * customizes cell values.</p>
+ * <p>All standard Jackson annotations ({@code @JsonProperty}, {@code @JsonIgnore},
+ * {@code @JsonPropertyOrder}, enum {@code @JsonProperty}) work with {@code @DataGrid}
+ * classes exactly as they do with JSON serialization.</p>
  *
  * <pre>
  * Person (internalId excluded by @JsonIgnore, name renamed to fullName):

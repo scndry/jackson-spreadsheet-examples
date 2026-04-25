@@ -11,17 +11,20 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * Process large files row-by-row without loading all rows into memory.
- * Uses {@code SheetMappingIterator} for one-at-a-time access with location tracking.
+ * Stream large Excel files (100K+ rows) row-by-row — constant memory footprint.
+ * Avoids OutOfMemoryError by processing one row at a time via {@code SheetMappingIterator}.
+ *
+ * <p>Two patterns: single-row iteration with location tracking, and batch processing
+ * for bulk database inserts. For simple full-load reads, see {@link BasicReadExample}.</p>
  *
  * <pre>
- * +-------+------------+--------+--------+
- * | name  | department | salary | active |  ← reads row-by-row
- * +-------+------------+--------+--------+
- * | Alice | Engineering|  80000 | true   |  → consumer.accept(alice)
- * | Bob   | Design     |  75000 | false  |  → consumer.accept(bob)
- * | ...   | ...        |    ... | ...    |
- * +-------+------------+--------+--------+
+ * +-------+-------------+--------+--------+
+ * | name  | department  | salary | active |  -- reads row-by-row
+ * +-------+-------------+--------+--------+
+ * | Alice | Engineering |  80000 | true   |  -> consumer.accept(alice)
+ * | Bob   | Design      |  75000 | false  |  -> consumer.accept(bob)
+ * | ...   | ...         |    ... | ...    |
+ * +-------+-------------+--------+--------+
  * </pre>
  */
 public class StreamingReadExample {

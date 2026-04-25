@@ -6,7 +6,11 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Read an Excel file into typed POJOs — one line.
+ * Import an Excel file (XLSX) into typed Java objects — one line.
+ * The simplest way to parse spreadsheet data: pass a file and a type, get a list of objects.
+ *
+ * <p>Column headers are matched to field names automatically.
+ * For streaming large files without loading all rows, see {@link io.github.scndry.examples.read.StreamingReadExample}.</p>
  */
 public class SimpleReadExample {
 

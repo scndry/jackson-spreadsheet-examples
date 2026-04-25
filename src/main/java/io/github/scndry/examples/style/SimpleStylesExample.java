@@ -16,14 +16,17 @@ import java.util.List;
  * {@link StylesBuilder#simple()} applies type-based default formats automatically.
  *
  * <ul>
- *   <li>{@code float}/{@code double} (primitives) → {@code #,##0.00}</li>
- *   <li>{@code int}/{@code long} (primitives) → {@code #,##0}</li>
- *   <li>{@code Float}/{@code Double} (wrappers) → {@code 0.00}</li>
- *   <li>{@code Integer}/{@code Long} (wrappers) → {@code 0}</li>
- *   <li>{@code BigInteger}/{@code BigDecimal}/{@code String} → {@code @} (text)</li>
- *   <li>{@code Date}/{@code Calendar}/{@code LocalDateTime} → {@code yyyy-mm-dd hh:mm:ss}</li>
- *   <li>{@code LocalDate} → {@code yyyy-mm-dd}</li>
+ *   <li>{@code float}/{@code double} (primitives) -> {@code #,##0.00}</li>
+ *   <li>{@code int}/{@code long} (primitives) -> {@code #,##0}</li>
+ *   <li>{@code Float}/{@code Double} (wrappers) -> {@code 0.00}</li>
+ *   <li>{@code Integer}/{@code Long} (wrappers) -> {@code 0}</li>
+ *   <li>{@code BigInteger}/{@code BigDecimal}/{@code String} -> {@code @} (text)</li>
+ *   <li>{@code Date}/{@code Calendar}/{@code LocalDateTime} -> {@code yyyy-mm-dd hh:mm:ss}</li>
+ *   <li>{@code LocalDate} -> {@code yyyy-mm-dd}</li>
  * </ul>
+ *
+ * <p>The easiest way to format Excel exports — one line of configuration applies sensible defaults
+ * for all numeric, date, and text columns.</p>
  *
  * <pre>
  * +-------------+----------+-----------+--------+------------+

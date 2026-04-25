@@ -14,7 +14,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 /**
- * Spring Boot controller for Excel download and upload.
+ * Spring Boot REST API for Excel file download and upload.
+ *
+ * <p>GET {@code /api/excel/download} exports data as an XLSX file.
+ * POST {@code /api/excel/upload} imports an uploaded XLSX file into Java objects.
+ * Demonstrates integration with {@code HttpServletResponse} and {@code MultipartFile}.</p>
  */
 @RestController
 @RequestMapping("/api/excel")

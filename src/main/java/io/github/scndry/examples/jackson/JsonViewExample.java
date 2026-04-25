@@ -12,7 +12,11 @@ import java.io.File;
 import java.util.List;
 
 /**
- * View-based column filtering — export different column subsets for different audiences.
+ * Export different column subsets for different audiences using {@code @JsonView}.
+ *
+ * <p>Define view classes (Summary, Detail) and annotate fields. The same model produces
+ * different Excel exports depending on the active view — useful for role-based data access
+ * or tiered report generation.</p>
  *
  * <pre>
  * Summary view:              Detail view:

@@ -12,13 +12,16 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 /**
- * Template-based writing — open an existing template, write data into it.
- * Pre-formatted headers, charts, formulas, and conditional formatting are preserved.
+ * Populate pre-formatted Excel templates with data — preserve headers, charts, formulas, and styles.
+ *
+ * <p>Open an existing {@code .xlsx} template, write data into the data area (starting at origin),
+ * and save to a new file. Template formatting outside the data region is untouched.
+ * Ideal for branded reports, invoice generation, and pre-designed dashboards.</p>
  *
  * <pre>
  * Template (template.xlsx):        Output (output.xlsx):
  * +------+-------+-------+        +------+-------+-------+
- * | Item | Count | Total | ← kept | Item | Count | Total |
+ * | Item | Count | Total | -- kept| Item | Count | Total |
  * +------+-------+-------+        +------+-------+-------+
  * |      |       |       |        | Pen  |    50 | 25.00 |
  * +------+-------+-------+        | Book |    10 | 89.90 |
