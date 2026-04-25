@@ -18,6 +18,7 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | [BasicReadExample](src/main/java/io/github/scndry/examples/read/BasicReadExample.java) | Read all rows or first row |
 | [MultiSheetReadExample](src/main/java/io/github/scndry/examples/read/MultiSheetReadExample.java) | Read from specific sheet by name or index |
 | [StreamingReadExample](src/main/java/io/github/scndry/examples/read/StreamingReadExample.java) | Row-by-row iteration with location tracking, batch processing |
+| [DateHandlingExample](src/main/java/io/github/scndry/examples/read/DateHandlingExample.java) | Automatic Excel date ↔ Java date conversion (LocalDate, LocalDateTime) |
 
 ## Write
 
@@ -41,6 +42,9 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | [JacksonAnnotationExample](src/main/java/io/github/scndry/examples/jackson/JacksonAnnotationExample.java) | @JsonProperty, @JsonIgnore, @JsonPropertyOrder, enum mapping |
 | [JsonViewExample](src/main/java/io/github/scndry/examples/jackson/JsonViewExample.java) | View-based column filtering — export different subsets per audience |
 | [MixInExample](src/main/java/io/github/scndry/examples/jackson/MixInExample.java) | Apply @DataGrid to third-party classes without modifying source |
+| [JsonUnwrappedExample](src/main/java/io/github/scndry/examples/jackson/JsonUnwrappedExample.java) | Flatten nested objects with leaf field names as headers |
+| [CustomSerializerExample](src/main/java/io/github/scndry/examples/jackson/CustomSerializerExample.java) | Custom cell value serializer/deserializer (Yes/No booleans) |
+| [NullHandlingExample](src/main/java/io/github/scndry/examples/jackson/NullHandlingExample.java) | @JsonInclude(NON_NULL) — skip null cells on write |
 
 ## Styling
 
@@ -60,6 +64,7 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | Example | Description |
 |---------|-------------|
 | [POIIntegrationExample](src/main/java/io/github/scndry/examples/poi/POIIntegrationExample.java) | Multi-sheet workbook, formula post-processing, direct Sheet read |
+| [TemplateWriteExample](src/main/java/io/github/scndry/examples/poi/TemplateWriteExample.java) | Write data into pre-formatted Excel template |
 
 ## Web (Spring Boot)
 
