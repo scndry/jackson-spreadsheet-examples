@@ -141,6 +141,15 @@ All examples are runnable as JUnit tests: `./gradlew test`
 
 **Dates appear as numbers** — Use `StylesBuilder.simple()` to auto-format date columns, or apply a custom date format via `@DataColumn(style = "date")`.
 
+**"No @DataGrid annotation found"** — The root POJO must be annotated with `@DataGrid`. This is what tells the mapper which class defines the spreadsheet schema.
+
+**Formula cells return formula text, not the computed value** — The default streaming reader parses raw XML and returns formula strings as-is. Use `USE_POI_USER_MODEL` to read via POI's `FormulaEvaluator`, or read through a POI `Sheet` directly (see `POIIntegrationExample`).
+
+**ClassNotFoundException: org.h2.mvstore.MVStore** — `FILE_BACKED_SHARED_STRINGS` requires H2 on the classpath. Add the dependency:
+```gradle
+implementation("com.h2database:h2:2.2.224")
+```
+
 ## Requirements
 
 - Java 17+
