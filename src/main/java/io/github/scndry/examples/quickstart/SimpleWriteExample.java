@@ -5,6 +5,9 @@ import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Write a list of POJOs to an Excel file — one line.
+ */
 public class SimpleWriteExample {
 
     public static void write(File file) throws Exception {

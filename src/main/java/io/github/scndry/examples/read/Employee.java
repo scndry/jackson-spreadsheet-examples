@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Shared model for read examples — mixed types (String, int, boolean).
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -5,6 +5,9 @@ import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Read an Excel file into typed POJOs — one line.
+ */
 public class SimpleReadExample {
 
     public static List<Product> read(File file) throws Exception {
