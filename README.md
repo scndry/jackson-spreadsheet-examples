@@ -26,7 +26,7 @@ An alternative to writing verbose Apache POI Sheet/Row/Cell code. If you know Ja
 **1. Add dependency**
 
 ```gradle
-implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.2.1")
+implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.3.0")
 ```
 
 **2. Define your model**
@@ -153,7 +153,7 @@ implementation("com.h2database:h2:2.2.224")
 ## Requirements
 
 - Java 17+
-- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.2.1
+- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.3.0
 - Spring Boot 3.5 (web examples only)
 - H2 (file-backed shared strings examples only)
 

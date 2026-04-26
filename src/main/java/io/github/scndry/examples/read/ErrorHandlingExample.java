@@ -1,5 +1,6 @@
 package io.github.scndry.examples.read;
 
+import io.github.scndry.jackson.dataformat.spreadsheet.SheetLocation;
 import io.github.scndry.jackson.dataformat.spreadsheet.SheetMappingIterator;
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * Handle malformed rows during Excel import — skip invalid data and log errors with row locations.
  *
- * <p>Uses {@code SheetMappingIterator.getCurrentLocation()} to report the exact row and column
+ * <p>Uses {@code SheetLocation.of(exception)} to extract the exact row and column
  * where parsing failed. Valid rows are collected; invalid rows are logged and skipped.
  * Essential for production imports where input quality is not guaranteed.</p>
  *
@@ -44,8 +45,10 @@ public class ErrorHandlingExample {
                 try {
                     rows.add(iter.next());
                 } catch (Exception e) {
-                    var loc = iter.getCurrentLocation();
-                    errors.add("Row " + loc.getRow() + ", Col " + loc.getColumn() + ": " + e.getMessage());
+                    var loc = SheetLocation.of(e);
+                    String prefix = loc != null
+                            ? "Row " + loc.getRow() + ", Col " + loc.getColumn() + ": " : "";
+                    errors.add(prefix + e.getMessage());
                 }
             }
         }

@@ -2,7 +2,7 @@ package io.github.scndry.examples.read;
 
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import io.github.scndry.jackson.dataformat.spreadsheet.SheetMappingIterator;
-import io.github.scndry.jackson.dataformat.spreadsheet.deser.SheetLocation;
+import io.github.scndry.jackson.dataformat.spreadsheet.SheetLocation;
 
 import java.io.File;
 import java.util.ArrayList;
