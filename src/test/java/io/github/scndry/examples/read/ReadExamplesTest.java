@@ -113,6 +113,6 @@ class ReadExamplesTest {
         var result = ErrorHandlingExample.readWithErrorRecovery(badFile);
         assertThat(result.rows()).extracting(Employee::getName).containsExactly("Alice", "Carol");
         assertThat(result.errors()).hasSize(1);
-        assertThat(result.errors().get(0)).isNotEmpty();
+        assertThat(result.errors().get(0)).startsWith("Row ");
     }
 }

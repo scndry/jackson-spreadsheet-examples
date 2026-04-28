@@ -26,7 +26,7 @@ An alternative to writing verbose Apache POI Sheet/Row/Cell code. If you know Ja
 **1. Add dependency**
 
 ```gradle
-implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.3.1")
+implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.4.0")
 ```
 
 **2. Define your model**
@@ -81,6 +81,7 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | [StyleWriteExample](src/main/java/io/github/scndry/examples/write/StyleWriteExample.java) | Number formats, fonts, borders, fills, header styles |
 | [MergeWriteExample](src/main/java/io/github/scndry/examples/write/MergeWriteExample.java) | Vertical cell merging with nested lists |
 | [SequenceWriteExample](src/main/java/io/github/scndry/examples/write/SequenceWriteExample.java) | Stream rows incrementally (database cursors, pagination) |
+| [HeaderCommentExample](src/main/java/io/github/scndry/examples/write/HeaderCommentExample.java) | Attach hover comments to header cells via @DataColumn(comment = ...) |
 
 ### Nested Objects
 
@@ -105,6 +106,14 @@ All examples are runnable as JUnit tests: `./gradlew test`
 |---------|-------------|
 | [SimpleStylesExample](src/main/java/io/github/scndry/examples/style/SimpleStylesExample.java) | One-line type-based formatting (StylesBuilder.simple()) |
 | [CloneStyleExample](src/main/java/io/github/scndry/examples/style/CloneStyleExample.java) | Inherit and extend cell styles |
+
+### Sheet-Level Features
+
+| Example | Description |
+|---------|-------------|
+| [ConditionalFormattingExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingExample.java) | Highlight cells whose value matches a rule (column + style by name) |
+| [FreezePaneExample](src/main/java/io/github/scndry/examples/sheet/FreezePaneExample.java) | Keep header row visible while scrolling |
+| [AutoFilterExample](src/main/java/io/github/scndry/examples/sheet/AutoFilterExample.java) | Enable Excel's filter dropdown on the header row |
 
 ### Configuration
 
@@ -153,7 +162,7 @@ implementation("com.h2database:h2:2.2.224")
 ## Requirements
 
 - Java 17+
-- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.3.1
+- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.4.0
 - Spring Boot 3.5 (web examples only)
 - H2 (file-backed shared strings examples only)
 

@@ -81,4 +81,19 @@ class WriteExamplesTest {
                     assertThat(r.getLastRow() - r.getFirstRow() + 1).isEqualTo(2));
         }
     }
+
+    @Test
+    void headerComment() throws Exception {
+        var file = tempDir.resolve("header-comment.xlsx").toFile();
+
+        HeaderCommentExample.write(file);
+
+        try (var wb = new XSSFWorkbook(file)) {
+            var header = wb.getSheetAt(0).getRow(0);
+            assertThat(header.getCell(0).getCellComment().getString().getString())
+                    .isEqualTo("Stock on hand at end of day");
+            assertThat(header.getCell(1).getCellComment().getString().getString())
+                    .isEqualTo("Listed price in USD");
+        }
+    }
 }
