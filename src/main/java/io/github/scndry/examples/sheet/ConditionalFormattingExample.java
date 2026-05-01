@@ -52,9 +52,9 @@ public class ConditionalFormattingExample {
 
         var grid = new GridConfigurer()
                 .conditionalFormatting()
-                    .column("score").greaterThanOrEqual("90").style("good").end()
+                    .column("score").greaterThanOrEqual(90).style("good").end()
                 .conditionalFormatting()
-                    .column("score").lessThan("60").style("bad").end();
+                    .column("score").lessThan(60).style("bad").end();
 
         var mapper = SpreadsheetMapper.builder()
                 .stylesBuilder(styles)
