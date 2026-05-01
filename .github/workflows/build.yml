@@ -2,9 +2,11 @@ name: Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
+  schedule:
+    - cron: '0 0 * * 1'  # weekly on Monday — re-validate develop against latest SNAPSHOT
 
 permissions:
   contents: read
