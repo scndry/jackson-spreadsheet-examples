@@ -15,10 +15,15 @@ java {
 
 repositories {
 	mavenCentral()
+	maven {
+		name = "centralSnapshots"
+		url = uri("https://central.sonatype.com/repository/maven-snapshots/")
+		mavenContent { snapshotsOnly() }
+	}
 }
 
 dependencies {
-	implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.4.1")
+	implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.5.0")
 	implementation("com.h2database:h2:2.2.224")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	compileOnly("org.projectlombok:lombok")
