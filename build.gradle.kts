@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-	implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.5.0-SNAPSHOT")
+	implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.5.0")
 	implementation("com.h2database:h2:2.2.224")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	compileOnly("org.projectlombok:lombok")
