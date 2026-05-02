@@ -1,8 +1,13 @@
 package io.github.scndry.examples.visualfixture;
 
 import io.github.scndry.examples.sheet.ConditionalFormattingExample;
+import io.github.scndry.examples.style.CloneStyleExample;
+import io.github.scndry.examples.style.SimpleStylesExample;
+import io.github.scndry.examples.write.MergeWriteExample;
+import io.github.scndry.examples.write.StyleWriteExample;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Writes XLSX fixtures from each example to an output directory.
@@ -25,6 +30,14 @@ public class VisualFixtureGenerator {
         outDir.mkdirs();
 
         ConditionalFormattingExample.write(new File(outDir, "conditional-formatting.xlsx"));
+        SimpleStylesExample.write(new File(outDir, "simple-styles.xlsx"));
+        CloneStyleExample.write(new File(outDir, "clone-style.xlsx"));
+        StyleWriteExample.write(new File(outDir, "style-write.xlsx"), List.of(
+                new StyleWriteExample.Invoice("Alice", 100, 1999.99),
+                new StyleWriteExample.Invoice("Bob", 25, 49.50),
+                new StyleWriteExample.Invoice("Carol", 1234, 56789.01)
+        ));
+        MergeWriteExample.write(new File(outDir, "merge-write.xlsx"));
 
         System.out.println("Generated fixtures in: " + outDir.getAbsolutePath());
     }
