@@ -159,6 +159,12 @@ All examples are runnable as JUnit tests: `./gradlew test`
 implementation("com.h2database:h2:2.2.224")
 ```
 
+## Visual Fixture Review (maintainers)
+
+`./gradlew visualFixtures` regenerates XLSX from each example and renders to PNG in `build/visual-fixtures/` for visual review. Requires LibreOffice locally (`brew install --cask libreoffice`); the PNG step is skipped if `soffice` is not installed.
+
+Limited to cell-embedded visuals (fill, font, border, format, merge). View-state features (autoFilter dropdown, freeze pane split) and width-dependent visuals don't render cleanly in headless PNG and rely on POI-based tests instead.
+
 ## Requirements
 
 - Java 17+
