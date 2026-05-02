@@ -18,6 +18,11 @@ import java.util.List;
  * cell-embedded visuals (fill, font, border, format, merge). View-state features
  * (autoFilter dropdown, freeze pane split) don't render in headless PNG and are
  * verified by POI-based tests instead.</p>
+ *
+ * <p>Width-dependent visuals are also limited: the default streaming writer doesn't
+ * apply autoSize (per spec — see library GUIDE), so wide content like dates or nested
+ * headers can render as {@code ###} or truncate. This reflects the actual default
+ * output a user sees before manually resizing in Excel.</p>
  */
 public class VisualFixtureGenerator {
 
