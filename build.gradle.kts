@@ -50,22 +50,26 @@ tasks.register<JavaExec>("generateVisualFixtures") {
 	outputs.dir(visualFixturesDir)
 }
 
+fun resolveSoffice(): String? {
+	// Well-known absolute paths cover Homebrew (Apple Silicon + Intel), system, and direct app bundle.
+	// Resolved here instead of relying on PATH search inside Gradle's native process launcher.
+	val candidates = listOf(
+		"/opt/homebrew/bin/soffice",
+		"/usr/local/bin/soffice",
+		"/usr/bin/soffice",
+		"/Applications/LibreOffice.app/Contents/MacOS/soffice",
+	)
+	return candidates.firstOrNull { File(it).canExecute() }
+}
+
 tasks.register("renderVisualFixtures") {
 	group = "verification"
-	description = "Render XLSX fixtures to PNG via LibreOffice (skipped if soffice not on PATH)"
+	description = "Render XLSX fixtures to PNG via LibreOffice (skipped if soffice not found)"
 	dependsOn("generateVisualFixtures")
+	val sofficePath = resolveSoffice()
 	onlyIf {
-		val available = try {
-			ProcessBuilder("which", "soffice")
-				.redirectOutput(ProcessBuilder.Redirect.DISCARD)
-				.redirectError(ProcessBuilder.Redirect.DISCARD)
-				.start()
-				.waitFor() == 0
-		} catch (_: Exception) {
-			false
-		}
-		if (!available) logger.warn("soffice not on PATH — skipping. Install LibreOffice to render fixtures.")
-		available
+		if (sofficePath == null) logger.warn("soffice not found at well-known paths — skipping. Install LibreOffice to render fixtures.")
+		sofficePath != null
 	}
 	doLast {
 		val outDir = visualFixturesDir.get().asFile
@@ -76,7 +80,7 @@ tasks.register("renderVisualFixtures") {
 		}
 		exec {
 			commandLine = listOf(
-				"soffice",
+				sofficePath!!,
 				"--headless",
 				"--norestore",
 				"-env:UserInstallation=file:///tmp/libre-fixture-profile",
