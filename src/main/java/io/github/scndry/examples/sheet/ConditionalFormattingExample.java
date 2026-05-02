@@ -4,6 +4,9 @@ import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataGrid;
 import io.github.scndry.jackson.dataformat.spreadsheet.schema.grid.GridConfigurer;
 import io.github.scndry.jackson.dataformat.spreadsheet.schema.style.StylesBuilder;
+
+import static io.github.scndry.jackson.dataformat.spreadsheet.schema.grid.ConditionalFormats.greaterThanOrEqual;
+import static io.github.scndry.jackson.dataformat.spreadsheet.schema.grid.ConditionalFormats.lessThan;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,10 +54,9 @@ public class ConditionalFormattingExample {
                     .end();
 
         var grid = new GridConfigurer()
-                .conditionalFormatting()
-                    .column("score").greaterThanOrEqual(90).style("good").end()
-                .conditionalFormatting()
-                    .column("score").lessThan(60).style("bad").end();
+                .conditionalFormatting("score",
+                        greaterThanOrEqual(90).style("good"),
+                        lessThan(60).style("bad"));
 
         var mapper = SpreadsheetMapper.builder()
                 .stylesBuilder(styles)
