@@ -26,7 +26,7 @@ An alternative to writing verbose Apache POI Sheet/Row/Cell code. If you know Ja
 **1. Add dependency**
 
 ```gradle
-implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.4.0")
+implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.6.0")
 ```
 
 **2. Define your model**
@@ -174,7 +174,7 @@ Limited to cell-embedded visuals (fill, font, border, format, merge). View-state
 ## Requirements
 
 - Java 17+
-- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.4.0
+- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.6.0
 - Spring Boot 3.5 (web examples only)
 - H2 (file-backed shared strings examples only)
 
