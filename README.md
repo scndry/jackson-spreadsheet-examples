@@ -158,7 +158,7 @@ All examples are runnable as JUnit tests: `./gradlew test`
 
 **"No @DataGrid annotation found"** — The root POJO must be annotated with `@DataGrid`. This is what tells the mapper which class defines the spreadsheet schema.
 
-**Formula cells return formula text, not the computed value** — The default streaming reader parses raw XML and returns formula strings as-is. Use `USE_POI_USER_MODEL` to read via POI's `FormulaEvaluator`, or read through a POI `Sheet` directly (see `POIIntegrationExample`).
+**Formula cells return the cached computed value** — The reader binds the cached value (emitted when the formula was last evaluated by Excel/POI). To force re-evaluation, open the workbook with POI directly and invoke `FormulaEvaluator.evaluateAll()` before passing the `Sheet` to the mapper (see `POIIntegrationExample`).
 
 **ClassNotFoundException: org.h2.mvstore.MVStore** — `FILE_BACKED_SHARED_STRINGS` requires H2 on the classpath. Add the dependency:
 ```gradle
