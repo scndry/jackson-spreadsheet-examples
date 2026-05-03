@@ -112,6 +112,12 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | Example | Description |
 |---------|-------------|
 | [ConditionalFormattingExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingExample.java) | Highlight cells whose value matches a rule (column + style by name) |
+| [ConditionalFormattingColumnRefExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingColumnRefExample.java) | Schema-aware row-relative column reference (e.g., price > minPrice per row) |
+| [ConditionalFormattingFormulaExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingFormulaExample.java) | Raw Excel formula passthrough — reference a config cell outside the data grid (POI integration) |
+| [ConditionalFormattingExpressionExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingExpressionExample.java) | Arbitrary boolean Excel formula for cross-column logic (AND, OR, ISBLANK) |
+| [ConditionalFormattingColorScaleExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingColorScaleExample.java) | 3-color gradient visualization across a column's value range |
+| [ConditionalFormattingRangeExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingRangeExample.java) | between / notBetween range comparison |
+| [ConditionalFormattingDateExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingDateExample.java) | Date type comparison (LocalDate auto-converts to Excel DATE() formula) |
 | [FreezePaneExample](src/main/java/io/github/scndry/examples/sheet/FreezePaneExample.java) | Keep header row visible while scrolling |
 | [AutoFilterExample](src/main/java/io/github/scndry/examples/sheet/AutoFilterExample.java) | Enable Excel's filter dropdown on the header row |
 
