@@ -26,7 +26,7 @@ An alternative to writing verbose Apache POI Sheet/Row/Cell code. If you know Ja
 **1. Add dependency**
 
 ```gradle
-implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.4.0")
+implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.6.0")
 ```
 
 **2. Define your model**
@@ -112,6 +112,12 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | Example | Description |
 |---------|-------------|
 | [ConditionalFormattingExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingExample.java) | Highlight cells whose value matches a rule (column + style by name) |
+| [ConditionalFormattingColumnRefExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingColumnRefExample.java) | Schema-aware row-relative column reference (e.g., price > minPrice per row) |
+| [ConditionalFormattingFormulaExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingFormulaExample.java) | Raw Excel formula passthrough — reference a config cell outside the data grid (POI integration) |
+| [ConditionalFormattingExpressionExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingExpressionExample.java) | Arbitrary boolean Excel formula for cross-column logic (AND, OR, ISBLANK) |
+| [ConditionalFormattingColorScaleExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingColorScaleExample.java) | 3-color gradient visualization across a column's value range |
+| [ConditionalFormattingRangeExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingRangeExample.java) | between / notBetween range comparison |
+| [ConditionalFormattingDateExample](src/main/java/io/github/scndry/examples/sheet/ConditionalFormattingDateExample.java) | Date type comparison (LocalDate auto-converts to Excel DATE() formula) |
 | [FreezePaneExample](src/main/java/io/github/scndry/examples/sheet/FreezePaneExample.java) | Keep header row visible while scrolling |
 | [AutoFilterExample](src/main/java/io/github/scndry/examples/sheet/AutoFilterExample.java) | Enable Excel's filter dropdown on the header row |
 
@@ -152,7 +158,7 @@ All examples are runnable as JUnit tests: `./gradlew test`
 
 **"No @DataGrid annotation found"** — The root POJO must be annotated with `@DataGrid`. This is what tells the mapper which class defines the spreadsheet schema.
 
-**Formula cells return formula text, not the computed value** — The default streaming reader parses raw XML and returns formula strings as-is. Use `USE_POI_USER_MODEL` to read via POI's `FormulaEvaluator`, or read through a POI `Sheet` directly (see `POIIntegrationExample`).
+**Formula cells return the cached computed value** — The reader binds the cached value (emitted when the formula was last evaluated by Excel/POI). To force re-evaluation, open the workbook with POI directly and invoke `FormulaEvaluator.evaluateAll()` before passing the `Sheet` to the mapper (see `POIIntegrationExample`).
 
 **ClassNotFoundException: org.h2.mvstore.MVStore** — `FILE_BACKED_SHARED_STRINGS` requires H2 on the classpath. Add the dependency:
 ```gradle
@@ -168,7 +174,7 @@ Limited to cell-embedded visuals (fill, font, border, format, merge). View-state
 ## Requirements
 
 - Java 17+
-- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.4.0
+- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.6.0
 - Spring Boot 3.5 (web examples only)
 - H2 (file-backed shared strings examples only)
 

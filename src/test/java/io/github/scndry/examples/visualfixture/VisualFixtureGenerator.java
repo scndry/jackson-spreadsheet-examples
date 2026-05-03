@@ -1,6 +1,12 @@
 package io.github.scndry.examples.visualfixture;
 
+import io.github.scndry.examples.sheet.ConditionalFormattingColorScaleExample;
+import io.github.scndry.examples.sheet.ConditionalFormattingColumnRefExample;
+import io.github.scndry.examples.sheet.ConditionalFormattingDateExample;
 import io.github.scndry.examples.sheet.ConditionalFormattingExample;
+import io.github.scndry.examples.sheet.ConditionalFormattingExpressionExample;
+import io.github.scndry.examples.sheet.ConditionalFormattingFormulaExample;
+import io.github.scndry.examples.sheet.ConditionalFormattingRangeExample;
 import io.github.scndry.examples.style.CloneStyleExample;
 import io.github.scndry.examples.style.SimpleStylesExample;
 import io.github.scndry.examples.write.MergeWriteExample;
@@ -34,7 +40,13 @@ public class VisualFixtureGenerator {
         }
         outDir.mkdirs();
 
+        ConditionalFormattingColorScaleExample.write(new File(outDir, "conditional-formatting-color-scale.xlsx"));
+        ConditionalFormattingColumnRefExample.write(new File(outDir, "conditional-formatting-column-ref.xlsx"));
+        ConditionalFormattingDateExample.write(new File(outDir, "conditional-formatting-date.xlsx"));
         ConditionalFormattingExample.write(new File(outDir, "conditional-formatting.xlsx"));
+        ConditionalFormattingExpressionExample.write(new File(outDir, "conditional-formatting-expression.xlsx"));
+        ConditionalFormattingFormulaExample.write(new File(outDir, "conditional-formatting-formula.xlsx"));
+        ConditionalFormattingRangeExample.write(new File(outDir, "conditional-formatting-range.xlsx"));
         SimpleStylesExample.write(new File(outDir, "simple-styles.xlsx"));
         CloneStyleExample.write(new File(outDir, "clone-style.xlsx"));
         StyleWriteExample.write(new File(outDir, "style-write.xlsx"), List.of(
