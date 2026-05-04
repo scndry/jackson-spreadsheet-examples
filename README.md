@@ -184,5 +184,5 @@ Limited to cell-embedded visuals (fill, font, border, format, merge). View-state
 
 ---
 
-<sub>This README includes an anonymous, aggregated usage tracker via [Scarf](https://about.scarf.sh/). No personal information is collected.</sub>
-<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=38da6441-2b3b-4756-b338-a0b5f2ffe640" />
+<sub>Anonymous, aggregated usage tracking via [Scarf](https://about.scarf.sh/). No personal information is collected.</sub>
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=38da6441-2b3b-4756-b338-a0b5f2ffe640&page=README.md" />
