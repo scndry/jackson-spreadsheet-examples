@@ -100,6 +100,17 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | [CustomSerializerExample](src/main/java/io/github/scndry/examples/jackson/CustomSerializerExample.java) | Custom cell value conversion (Yes/No booleans) |
 | [NullHandlingExample](src/main/java/io/github/scndry/examples/jackson/NullHandlingExample.java) | @JsonInclude(NON_NULL) — blank cells for null fields |
 
+### Format Interop (CSV ↔ XLSX)
+
+Compose `SpreadsheetMapper` with Jackson's `CsvMapper` — same POJO, two formats.
+
+| Example | Description |
+|---------|-------------|
+| [Xlsx2CsvExample](src/main/java/io/github/scndry/examples/interop/Xlsx2CsvExample.java) | XLSX → CSV (load all rows into memory) |
+| [StreamingXlsx2CsvExample](src/main/java/io/github/scndry/examples/interop/StreamingXlsx2CsvExample.java) | XLSX → CSV (constant memory, row-by-row streaming) |
+| [Csv2XlsxExample](src/main/java/io/github/scndry/examples/interop/Csv2XlsxExample.java) | CSV → XLSX (load all rows into memory) |
+| [StreamingCsv2XlsxExample](src/main/java/io/github/scndry/examples/interop/StreamingCsv2XlsxExample.java) | CSV → XLSX (constant memory, row-by-row streaming) |
+
 ### Styling
 
 | Example | Description |
