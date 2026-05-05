@@ -22,6 +22,10 @@ repositories {
 	}
 }
 
+// Override Spring Boot 3.5 BOM pin (3.17.0) to fix CVE-2025-48924
+// (Apache Commons Lang < 3.18.0 — uncontrolled recursion).
+extra["commons-lang3.version"] = "3.18.0"
+
 dependencies {
 	implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.6.0")
 	implementation("com.h2database:h2:2.2.224")
