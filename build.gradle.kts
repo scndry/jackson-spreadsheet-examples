@@ -27,7 +27,7 @@ repositories {
 extra["commons-lang3.version"] = "3.18.0"
 
 dependencies {
-	implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.6.1-SNAPSHOT")
+	implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.6.1")
 	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-csv")
 	implementation("com.h2database:h2:2.2.224")
 	implementation("org.springframework.boot:spring-boot-starter-web")
