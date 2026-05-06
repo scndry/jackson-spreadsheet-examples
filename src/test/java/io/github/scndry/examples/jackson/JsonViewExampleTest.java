@@ -5,8 +5,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import java.io.File;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -41,10 +41,19 @@ class JsonViewExampleTest {
 
         JsonViewExample.writeDetail(file, reports);
 
+        // Detail view includes Summary fields (name, total) plus the Detail-only
+        // fields (breakdown, notes). Asserting specific column names — not just
+        // the count — catches a regression where the view returns a different
+        // set of fields with the same cardinality.
         try (var wb = new XSSFWorkbook(file)) {
             var header = wb.getSheetAt(0).getRow(0);
-            // Detail: all 4 columns
             assertThat(header.getLastCellNum()).isEqualTo((short) 4);
+            var names = new HashSet<String>();
+            for (int i = 0; i < 4; i++) {
+                names.add(header.getCell(i).getStringCellValue());
+            }
+            assertThat(names).containsExactlyInAnyOrder(
+                    "name", "total", "breakdown", "notes");
         }
     }
 }
