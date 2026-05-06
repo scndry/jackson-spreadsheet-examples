@@ -46,17 +46,25 @@ class ReadExamplesTest {
 
     @Test
     void multiSheetReadByName() throws Exception {
-        // Create multi-sheet file
+        // Create a file with TWO sheets and DIFFERENT data per sheet, then read the
+        // *second* sheet by name. Reading the second one ensures fall-back-to-first
+        // would return the wrong data, so the test exercises name resolution.
         var multiFile = tempDir.resolve("multi.xlsx").toFile();
+        var engineering = List.of(
+                new Employee("Alice", "Engineering", 90000, true));
+        var marketing = List.of(
+                new Employee("Bob", "Marketing", 70000, false),
+                new Employee("Carol", "Marketing", 72000, true));
         try (var wb = new XSSFWorkbook()) {
             var mapper = new SpreadsheetMapper();
-            mapper.writeValue(wb.createSheet("Engineering"), input, Employee.class);
+            mapper.writeValue(wb.createSheet("Engineering"), engineering, Employee.class);
+            mapper.writeValue(wb.createSheet("Marketing"), marketing, Employee.class);
             try (var out = new FileOutputStream(multiFile)) {
                 wb.write(out);
             }
         }
-        var result = MultiSheetReadExample.readByName(multiFile, "Engineering");
-        assertThat(result).isEqualTo(input);
+        var result = MultiSheetReadExample.readByName(multiFile, "Marketing");
+        assertThat(result).isEqualTo(marketing);
     }
 
     @Test
