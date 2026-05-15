@@ -26,7 +26,7 @@ An alternative to writing verbose Apache POI Sheet/Row/Cell code. If you know Ja
 **1. Add dependency**
 
 ```gradle
-implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.6.0")
+implementation("io.github.scndry:jackson-dataformat-spreadsheet:1.6.2")
 ```
 
 **2. Define your model**
@@ -88,6 +88,8 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | Example | Description |
 |---------|-------------|
 | [NestedObjectExample](src/main/java/io/github/scndry/examples/nested/NestedObjectExample.java) | Flatten nested POJOs to columns, reconstruct on read |
+| [DataColumnGroupExample](src/main/java/io/github/scndry/examples/nested/DataColumnGroupExample.java) | Multi-row header — group flattened columns under a shared parent header |
+| [DataColumnGroupListExample](src/main/java/io/github/scndry/examples/nested/DataColumnGroupListExample.java) | Multi-row header over `List<NestedType>` — group element columns, vertically merge outer fields |
 
 ### Jackson Annotations
 
@@ -185,7 +187,7 @@ Limited to cell-embedded visuals (fill, font, border, format, merge). View-state
 ## Requirements
 
 - Java 17+
-- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.6.0
+- [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) 1.6.2
 - Spring Boot 3.5 (web examples only)
 - H2 (file-backed shared strings examples only)
 
