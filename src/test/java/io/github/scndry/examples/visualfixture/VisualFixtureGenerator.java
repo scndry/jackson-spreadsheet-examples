@@ -1,5 +1,7 @@
 package io.github.scndry.examples.visualfixture;
 
+import io.github.scndry.examples.nested.DataColumnGroupExample;
+import io.github.scndry.examples.nested.DataColumnGroupListExample;
 import io.github.scndry.examples.sheet.ConditionalFormattingColorScaleExample;
 import io.github.scndry.examples.sheet.ConditionalFormattingColumnRefExample;
 import io.github.scndry.examples.sheet.ConditionalFormattingDateExample;
@@ -55,6 +57,8 @@ public class VisualFixtureGenerator {
                 new StyleWriteExample.Invoice("Carol", 1234, 56789.01)
         ));
         MergeWriteExample.write(new File(outDir, "merge-write.xlsx"));
+        DataColumnGroupExample.write(new File(outDir, "data-column-group.xlsx"));
+        DataColumnGroupListExample.write(new File(outDir, "data-column-group-list.xlsx"));
 
         System.out.println("Generated fixtures in: " + outDir.getAbsolutePath());
     }
