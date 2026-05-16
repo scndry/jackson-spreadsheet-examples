@@ -90,6 +90,8 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | [NestedObjectExample](src/main/java/io/github/scndry/examples/nested/NestedObjectExample.java) | Flatten nested POJOs to columns, reconstruct on read |
 | [DataColumnGroupExample](src/main/java/io/github/scndry/examples/nested/DataColumnGroupExample.java) | Multi-row header — group flattened columns under a shared parent header |
 | [DataColumnGroupListExample](src/main/java/io/github/scndry/examples/nested/DataColumnGroupListExample.java) | Multi-row header over `List<NestedType>` — group element columns, vertically merge outer fields |
+| [DataColumnGroupCascadeExample](src/main/java/io/github/scndry/examples/nested/DataColumnGroupCascadeExample.java) | `@DataColumnGroup` cascade slots — group-level style / merge defaults flow into child columns, leaf `@DataColumn` overrides |
+| [AttributeResolutionExample](src/main/java/io/github/scndry/examples/nested/AttributeResolutionExample.java) | Attribute resolution order — leaf → innermost group → outer group → declaring `@DataGrid` → enclosing `@DataGrid` |
 
 ### Jackson Annotations
 
@@ -101,6 +103,7 @@ All examples are runnable as JUnit tests: `./gradlew test`
 | [JsonUnwrappedExample](src/main/java/io/github/scndry/examples/jackson/JsonUnwrappedExample.java) | Flatten nested objects with leaf field names as headers |
 | [CustomSerializerExample](src/main/java/io/github/scndry/examples/jackson/CustomSerializerExample.java) | Custom cell value conversion (Yes/No booleans) |
 | [NullHandlingExample](src/main/java/io/github/scndry/examples/jackson/NullHandlingExample.java) | @JsonInclude(NON_NULL) — blank cells for null fields |
+| [JsonAliasReorderingExample](src/main/java/io/github/scndry/examples/jackson/JsonAliasReorderingExample.java) | `@JsonAlias` + `columnReordering(true)` — accept legacy / alternate header names |
 
 ### Format Interop (CSV ↔ XLSX)
 
@@ -158,6 +161,7 @@ Compose `SpreadsheetMapper` with Jackson's `CsvMapper` — same POJO, two format
 | Example | Description |
 |---------|-------------|
 | [LargeFileExample](src/main/java/io/github/scndry/examples/advanced/LargeFileExample.java) | 100K+ rows, file-backed shared strings, encrypted store, POI fallback |
+| [BackWriteOomGuardExample](src/main/java/io/github/scndry/examples/advanced/BackWriteOomGuardExample.java) | Risky vs safe field order around nested `List<T>` — back-write buffer triggers when outer fields trail the list |
 
 ## Troubleshooting
 
