@@ -1,5 +1,7 @@
 package io.github.scndry.examples.visualfixture;
 
+import io.github.scndry.examples.nested.AttributeResolutionExample;
+import io.github.scndry.examples.nested.DataColumnGroupCascadeExample;
 import io.github.scndry.examples.nested.DataColumnGroupExample;
 import io.github.scndry.examples.nested.DataColumnGroupListExample;
 import io.github.scndry.examples.sheet.ConditionalFormattingColorScaleExample;
@@ -59,6 +61,8 @@ public class VisualFixtureGenerator {
         MergeWriteExample.write(new File(outDir, "merge-write.xlsx"));
         DataColumnGroupExample.write(new File(outDir, "data-column-group.xlsx"));
         DataColumnGroupListExample.write(new File(outDir, "data-column-group-list.xlsx"));
+        DataColumnGroupCascadeExample.write(new File(outDir, "data-column-group-cascade.xlsx"));
+        AttributeResolutionExample.write(new File(outDir, "attribute-resolution.xlsx"));
 
         System.out.println("Generated fixtures in: " + outDir.getAbsolutePath());
     }
