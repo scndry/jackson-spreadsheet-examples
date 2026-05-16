@@ -1,6 +1,7 @@
 package io.github.scndry.examples.style;
 
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
+import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataColumn;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataGrid;
 import io.github.scndry.jackson.dataformat.spreadsheet.schema.style.StylesBuilder;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -26,16 +28,17 @@ import java.util.List;
  * </ul>
  *
  * <p>The easiest way to format Excel exports — one line of configuration applies sensible defaults
- * for all numeric, date, and text columns.</p>
+ * for all numeric, date, and text columns. The {@code Transaction} model below covers each
+ * format family (primitive int/long, wrapper Double, BigDecimal, LocalDate, LocalDateTime, String).</p>
  *
  * <pre>
- * +-------------+----------+-----------+--------+------------+
- * | description | quantity |    amount | tax    | date       |
- * +-------------+----------+-----------+--------+------------+
- * | Sale        |       10 |  1,500.50 | 135.05 | 2024-01-15 |
- * | Refund      |        1 |   -200.00 | -18.00 | 2024-01-20 |
- * +-------------+----------+-----------+--------+------------+
- *                  #,##0      #,##0.00     @      yyyy-mm-dd
+ * +-------------+----------+-----------+-------+--------+------------+---------------------+
+ * | description | quantity |    amount | price | tax    | date       | createdAt           |
+ * +-------------+----------+-----------+-------+--------+------------+---------------------+
+ * | Sale        |       10 | 1,500,000 | 99.99 | 135.05 | 2024-01-15 | 2024-01-15 09:30:00 |
+ * | Refund      |        1 |    -2,000 | 49.99 | -18.00 | 2024-01-20 | 2024-01-20 14:00:00 |
+ * +-------------+----------+-----------+-------+--------+------------+---------------------+
+ *      @          #,##0        #,##0    0.00      @     yyyy-mm-dd   yyyy-mm-dd hh:mm:ss
  * </pre>
  */
 public class SimpleStylesExample {
@@ -47,9 +50,11 @@ public class SimpleStylesExample {
     public static class Transaction {
         private String description;
         private int quantity;
-        private double amount;
+        @DataColumn(width = 12) private long amount;
+        private Double price;
         private BigDecimal tax;
-        private LocalDate date;
+        @DataColumn(width = 12) private LocalDate date;
+        @DataColumn(width = 22) private LocalDateTime createdAt;
     }
 
     public static void write(File file) throws Exception {
@@ -58,8 +63,12 @@ public class SimpleStylesExample {
                 .build();
 
         var data = List.of(
-                new Transaction("Sale", 10, 1500.50, new BigDecimal("135.05"), LocalDate.of(2024, 1, 15)),
-                new Transaction("Refund", 1, -200.00, new BigDecimal("-18.00"), LocalDate.of(2024, 1, 20)));
+                new Transaction("Sale", 10, 1_500_000L, 99.99, new BigDecimal("135.05"),
+                        LocalDate.of(2024, 1, 15),
+                        LocalDateTime.of(2024, 1, 15, 9, 30, 0)),
+                new Transaction("Refund", 1, -2_000L, 49.99, new BigDecimal("-18.00"),
+                        LocalDate.of(2024, 1, 20),
+                        LocalDateTime.of(2024, 1, 20, 14, 0, 0)));
 
         mapper.writeValue(file, data, Transaction.class);
     }

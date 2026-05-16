@@ -26,12 +26,16 @@ class StyleExamplesTest {
             var row = wb.getSheetAt(0).getRow(1);
             // int quantity → #,##0
             assertThat(row.getCell(1).getCellStyle().getDataFormatString()).isEqualTo("#,##0");
-            // double amount → #,##0.00
-            assertThat(row.getCell(2).getCellStyle().getDataFormatString()).isEqualTo("#,##0.00");
+            // long amount → #,##0
+            assertThat(row.getCell(2).getCellStyle().getDataFormatString()).isEqualTo("#,##0");
+            // Double price (wrapper) → 0.00
+            assertThat(row.getCell(3).getCellStyle().getDataFormatString()).isEqualTo("0.00");
             // BigDecimal tax → @
-            assertThat(row.getCell(3).getCellStyle().getDataFormatString()).isEqualTo("@");
+            assertThat(row.getCell(4).getCellStyle().getDataFormatString()).isEqualTo("@");
             // LocalDate → yyyy-mm-dd
-            assertThat(row.getCell(4).getCellStyle().getDataFormatString()).isEqualTo("yyyy-mm-dd");
+            assertThat(row.getCell(5).getCellStyle().getDataFormatString()).isEqualTo("yyyy-mm-dd");
+            // LocalDateTime → yyyy-mm-dd hh:mm:ss
+            assertThat(row.getCell(6).getCellStyle().getDataFormatString()).isEqualTo("yyyy-mm-dd hh:mm:ss");
         }
     }
 
