@@ -1,8 +1,8 @@
 # jackson-spreadsheet-examples
 
-Example project for [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet) — a lightweight Java library to read and write Excel files (XLSX, XLS) directly to/from Java objects.
+**Runnable JUnit-test examples for [jackson-dataformat-spreadsheet](https://github.com/scndry/jackson-dataformat-spreadsheet)** — 40+ self-contained Java files covering Excel read/write, cell styling, nested objects with `@DataColumnGroup`, Jackson annotation interop (`@JsonView`, `@JsonAlias`, MixIn, custom serializers), CSV ↔ XLSX format interop, conditional formatting / freeze pane / auto filter, Spring Boot REST integration, Apache POI fallback (multi-sheet, formulas, templates), and 100K+ row streaming. Each example is one file under `src/main/java`; run `./gradlew test` to execute them all as JUnit tests.
 
-An alternative to writing verbose Apache POI Sheet/Row/Cell code. If you know Jackson, you already know how to use this.
+The library extends Jackson's `ObjectMapper` so the same `mapper.readValue` / `mapper.writeValue` API used for JSON applies to Excel — see the [library README](https://github.com/scndry/jackson-dataformat-spreadsheet) for comparison vs Apache POI / Fesod / FastExcel and the full feature list.
 
 ## Why jackson-dataformat-spreadsheet?
 
