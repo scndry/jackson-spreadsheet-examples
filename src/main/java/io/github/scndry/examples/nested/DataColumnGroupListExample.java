@@ -5,6 +5,7 @@ import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataColumn;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataColumnGroup;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataGrid;
+import io.github.scndry.jackson.dataformat.spreadsheet.schema.style.StylesBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,7 +47,9 @@ public class DataColumnGroupListExample {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    @DataGrid
+    // columnStyle / columnHeaderStyle / groupHeaderStyle = "border" — for visual fixture only;
+    // multi-row header and merge cell boundaries are invisible in PNG renders without them.
+    @DataGrid(columnStyle = "border", columnHeaderStyle = "border", groupHeaderStyle = "border")
     public static class Order {
         @DataColumn(value = "id", merge = OptBoolean.TRUE)
         private int id;
@@ -85,6 +88,10 @@ public class DataColumnGroupListExample {
                         BigDecimal.valueOf(3000),
                         BigDecimal.valueOf(300),
                         BigDecimal.valueOf(3300)));
-        new SpreadsheetMapper().writeValue(file, orders, Order.class);
+        // border for visual fixture
+        var styles = new StylesBuilder()
+                .cellStyle("border").border().thin().end();
+        var mapper = SpreadsheetMapper.builder().stylesBuilder(styles).build();
+        mapper.writeValue(file, orders, Order.class);
     }
 }

@@ -50,7 +50,10 @@ public class DataColumnGroupCascadeExample {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    @DataGrid(mergeColumn = OptBoolean.TRUE)
+    // outer columnStyle / columnHeaderStyle / groupHeaderStyle = "border" for visual fixture;
+    // child cell borders are added by composing border into itemHeader / itemData / amountOverride below.
+    @DataGrid(mergeColumn = OptBoolean.TRUE,
+            columnStyle = "border", columnHeaderStyle = "border", groupHeaderStyle = "border")
     public static class Order {
         @DataColumn("Order ID") int id;
         @DataColumn("Customer") String customer;
@@ -74,16 +77,23 @@ public class DataColumnGroupCascadeExample {
 
     public static void write(File file) throws Exception {
         var styles = new StylesBuilder()
+                // shared "border" used by outer cells; each cascade style below
+                // also carries .border().thin() so child cells render with lines
+                // in the visual fixture.
+                .cellStyle("border").border().thin().end()
                 .cellStyle("itemHeader")
                     .font().bold().end()
                     .dataFormat().general()
+                    .border().thin()
                     .end()
                 .cellStyle("itemData")
                     .alignment().center()
+                    .border().thin()
                     .end()
                 .cellStyle("amountOverride")
                     .dataFormat().numberFloatWithComma()
                     .font().italic().end()
+                    .border().thin()
                     .end();
 
         var mapper = SpreadsheetMapper.builder().stylesBuilder(styles).build();
