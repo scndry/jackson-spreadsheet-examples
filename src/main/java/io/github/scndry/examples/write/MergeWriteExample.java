@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.OptBoolean;
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataColumn;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataGrid;
+import io.github.scndry.jackson.dataformat.spreadsheet.schema.style.StylesBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,9 @@ public class MergeWriteExample {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    @DataGrid
+    // columnStyle / columnHeaderStyle = "border" — border lines for visual fixture only;
+    // merge cell boundaries are invisible in PNG renders without them.
+    @DataGrid(columnStyle = "border", columnHeaderStyle = "border")
     public static class Order {
         @DataColumn(value = "Order ID", merge = OptBoolean.TRUE)
         private int orderId;
@@ -56,7 +59,10 @@ public class MergeWriteExample {
                 new Order(1, List.of(new Item("Apple", 3), new Item("Banana", 5)), 8.50),
                 new Order(2, List.of(new Item("Cherry", 2)), 6.00));
 
-        var mapper = new SpreadsheetMapper();
+        // border for visual fixture
+        var styles = new StylesBuilder()
+                .cellStyle("border").border().thin().end();
+        var mapper = SpreadsheetMapper.builder().stylesBuilder(styles).build();
         mapper.writeValue(file, orders, Order.class);
     }
 }
