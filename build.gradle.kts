@@ -31,7 +31,6 @@ dependencies {
 	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-csv")
 	implementation("com.h2database:h2:2.2.224")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.apache.commons:commons-fileupload2-jakarta-servlet6:2.0.0-M4")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
