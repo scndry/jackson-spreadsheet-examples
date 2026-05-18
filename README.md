@@ -155,7 +155,7 @@ Compose `SpreadsheetMapper` with Jackson's `CsvMapper` — same POJO, two format
 | Example | Description |
 |---------|-------------|
 | [ExcelController](src/main/java/io/github/scndry/examples/web/ExcelController.java) | REST API for Excel download and upload (synchronous, small payloads) |
-| [ExcelStreamingController](src/main/java/io/github/scndry/examples/web/ExcelStreamingController.java) | Large download via `StreamingResponseBody` + large upload via commons-fileupload2-jakarta streaming API + `SheetMappingIterator` — neither side buffers the body, row-by-row processing keeps heap flat |
+| [ExcelStreamingController](src/main/java/io/github/scndry/examples/web/ExcelStreamingController.java) | Large download via `StreamingResponseBody` + row-by-row upload via `SheetMappingIterator` — javadoc points to commons-fileupload2-jakarta for request-time streaming if needed |
 
 ### Large Files & Performance
 

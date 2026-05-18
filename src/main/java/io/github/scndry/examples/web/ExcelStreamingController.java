@@ -5,14 +5,9 @@ import io.github.scndry.jackson.dataformat.spreadsheet.SheetMappingIterator;
 import io.github.scndry.jackson.dataformat.spreadsheet.SpreadsheetMapper;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataColumn;
 import io.github.scndry.jackson.dataformat.spreadsheet.annotation.DataGrid;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.fileupload2.core.FileItemInput;
-import org.apache.commons.fileupload2.core.FileItemInputIterator;
-import org.apache.commons.fileupload2.core.FileUploadException;
-import org.apache.commons.fileupload2.jakarta.servlet6.JakartaServletFileUpload;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -20,7 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import java.io.IOException;
@@ -37,19 +34,23 @@ import java.util.stream.Stream;
  * row-streaming data source (paged repository, JDBC cursor, {@code Stream<T>})
  * to keep memory bounded alongside threads.</p>
  *
- * <p>POST {@code /api/excel/large/upload} drives the request body through
- * Apache Commons FileUpload's {@link JakartaServletFileUpload} streaming API,
- * pulls the file part's {@link InputStream} into a {@link SheetMappingIterator},
- * and processes rows one at a time. Heap stays flat regardless of file size
- * because nothing is buffered before the parser sees the bytes — the multipart
- * body, the cell stream, and the row dispatch are all pull-based.</p>
+ * <p>POST {@code /api/excel/large/upload} pulls the {@link MultipartFile}'s
+ * {@link InputStream} through {@link SheetMappingIterator} and processes rows
+ * one at a time. The cell-parsing phase keeps heap flat regardless of row
+ * count — the controller never materialises a {@code List<Row>}.</p>
  *
- * <p>For the streaming upload to be truly request-time, Spring's default
- * {@code MultipartResolver} must not consume the body first. Set
- * {@code spring.servlet.multipart.enabled=false} in {@code application.yaml},
- * or scope the file-streaming endpoint behind a path that the resolver does
- * not intercept. The simpler synchronous controller in {@link ExcelController}
- * relies on Spring's resolver and stays the right choice for bounded payloads.</p>
+ * <p>Spring's default {@code MultipartResolver} still buffers the request body
+ * (in memory up to {@code spring.servlet.multipart.file-size-threshold}, then
+ * to a temp file) before the controller is invoked. For request-time streaming
+ * where the multipart body is parsed directly off the wire — multi-GB uploads
+ * without disk buffering — add {@code commons-fileupload2-jakarta-servlet6},
+ * disable Spring's resolver with {@code spring.servlet.multipart.enabled=false},
+ * and pull the file part's {@code InputStream} via
+ * {@code JakartaServletFileUpload.getItemIterator(request)} into
+ * {@code mapper.sheetReaderFor(Row.class).readValues(in)}.</p>
+ *
+ * <p>{@link ExcelController} stays as the simple synchronous example for
+ * bounded payloads.</p>
  */
 @RestController
 @RequestMapping("/api/excel/large")
@@ -91,31 +92,20 @@ public class ExcelStreamingController {
     }
 
     /**
-     * POST /api/excel/large/upload — request-time streaming upload.
-     * Returns the processed row count; the controller never buffers the
-     * request body or holds the full row list.
+     * POST /api/excel/large/upload — row-by-row processing of an upload.
+     * Returns the processed row count; the controller never holds the full list.
      */
     @PostMapping("/upload")
-    public long upload(final HttpServletRequest request) throws IOException, FileUploadException {
-        if (!JakartaServletFileUpload.isMultipartContent(request)) {
-            throw new IllegalArgumentException("request is not multipart/form-data");
-        }
-        final JakartaServletFileUpload<?, ?> upload = new JakartaServletFileUpload<>();
-        final FileItemInputIterator iter = upload.getItemIterator(request);
-        while (iter.hasNext()) {
-            final FileItemInput item = iter.next();
-            if (item.isFormField() || !FILE_FIELD.equals(item.getFieldName())) continue;
-            try (InputStream in = item.getInputStream();
-                 SheetMappingIterator<Row> rows = mapper.sheetReaderFor(Row.class).readValues(in)) {
-                long count = 0;
-                while (rows.hasNext()) {
-                    _process(rows.next());
-                    count++;
-                }
-                return count;
+    public long upload(@RequestParam(FILE_FIELD) MultipartFile file) throws IOException {
+        long count = 0;
+        try (InputStream in = file.getInputStream();
+             SheetMappingIterator<Row> rows = mapper.sheetReaderFor(Row.class).readValues(in)) {
+            while (rows.hasNext()) {
+                _process(rows.next());
+                count++;
             }
         }
-        throw new IllegalArgumentException("multipart request missing '" + FILE_FIELD + "' part");
+        return count;
     }
 
     /** Replace with a paged repository, JDBC cursor, or any row-streaming source. */
