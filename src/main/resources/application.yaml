@@ -6,3 +6,10 @@ spring:
   #  multipart:
   #    max-file-size: 50MB
   #    max-request-size: 50MB
+  # ExcelStreamingController POST /api/excel/large/upload uses commons-fileupload2-jakarta's
+  # streaming API to parse the multipart body without buffering. Spring's default resolver
+  # would consume the body first, so disable it before the streaming endpoint is reachable.
+  # Uncomment to enable the streaming upload demo:
+  #servlet:
+  #  multipart:
+  #    enabled: false
