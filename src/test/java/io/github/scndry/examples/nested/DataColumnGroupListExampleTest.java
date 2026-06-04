@@ -47,11 +47,11 @@ class DataColumnGroupListExampleTest {
             assertThat(sheet.getRow(2).getCell(2).getStringCellValue()).isEqualTo("A1");
             assertThat(sheet.getRow(2).getCell(3).getStringCellValue()).isEqualTo("Apple");
             assertThat((int) sheet.getRow(2).getCell(4).getNumericCellValue()).isEqualTo(3);
-            assertThat(new BigDecimal(sheet.getRow(2).getCell(5).getStringCellValue()))
+            assertThat(BigDecimal.valueOf(sheet.getRow(2).getCell(5).getNumericCellValue()))
                     .isEqualByComparingTo("3000");
-            assertThat(new BigDecimal(sheet.getRow(2).getCell(6).getStringCellValue()))
+            assertThat(BigDecimal.valueOf(sheet.getRow(2).getCell(6).getNumericCellValue()))
                     .isEqualByComparingTo("8000");
-            assertThat(new BigDecimal(sheet.getRow(2).getCell(8).getStringCellValue()))
+            assertThat(BigDecimal.valueOf(sheet.getRow(2).getCell(8).getNumericCellValue()))
                     .isEqualByComparingTo("8800");
 
             assertThat(sheet.getRow(3).getCell(2).getStringCellValue()).isEqualTo("A2");
@@ -85,5 +85,30 @@ class DataColumnGroupListExampleTest {
                 assertThat(r.getLastColumn()).isEqualTo(5);
             });
         }
+    }
+
+    @Test
+    void readOrdersBackFromItemList() throws Exception {
+        var file = tempDir.resolve("order-roundtrip.xlsx").toFile();
+        DataColumnGroupListExample.write(file);
+
+        var orders = DataColumnGroupListExample.read(file);
+
+        assertThat(orders).hasSize(2);
+
+        assertThat(orders.get(0).getId()).isEqualTo(1);
+        assertThat(orders.get(0).getCustomer()).isEqualTo("Alice");
+        assertThat(orders.get(0).getItems()).hasSize(2);
+        assertThat(orders.get(0).getItems().get(0).getSku()).isEqualTo("A1");
+        assertThat(orders.get(0).getItems().get(0).getName()).isEqualTo("Apple");
+        assertThat(orders.get(0).getItems().get(1).getSku()).isEqualTo("A2");
+        assertThat(orders.get(0).getSubtotal()).isEqualByComparingTo("8000");
+        assertThat(orders.get(0).getTotal()).isEqualByComparingTo("8800");
+
+        assertThat(orders.get(1).getId()).isEqualTo(2);
+        assertThat(orders.get(1).getCustomer()).isEqualTo("Bob");
+        assertThat(orders.get(1).getItems()).hasSize(1);
+        assertThat(orders.get(1).getItems().get(0).getSku()).isEqualTo("B1");
+        assertThat(orders.get(1).getTotal()).isEqualByComparingTo("3300");
     }
 }

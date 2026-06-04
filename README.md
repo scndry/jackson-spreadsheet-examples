@@ -89,7 +89,7 @@ All examples are runnable as JUnit tests: `./gradlew test`
 |---------|-------------|
 | [NestedObjectExample](src/main/java/io/github/scndry/examples/nested/NestedObjectExample.java) | Flatten nested POJOs to columns, reconstruct on read |
 | [DataColumnGroupExample](src/main/java/io/github/scndry/examples/nested/DataColumnGroupExample.java) | Multi-row header — group flattened columns under a shared parent header |
-| [DataColumnGroupListExample](src/main/java/io/github/scndry/examples/nested/DataColumnGroupListExample.java) | Multi-row header over `List<NestedType>` — group element columns, vertically merge outer fields |
+| [DataColumnGroupListExample](src/main/java/io/github/scndry/examples/nested/DataColumnGroupListExample.java) | Multi-row header over `List<NestedType>` — group element columns, vertically merge outer fields, round-trip back via `@DataColumn(anchor = true)` |
 | [DataColumnGroupCascadeExample](src/main/java/io/github/scndry/examples/nested/DataColumnGroupCascadeExample.java) | `@DataColumnGroup` cascade slots — group-level style / merge defaults flow into child columns, leaf `@DataColumn` overrides |
 | [AttributeResolutionExample](src/main/java/io/github/scndry/examples/nested/AttributeResolutionExample.java) | Attribute resolution order — leaf → innermost group → outer group → declaring `@DataGrid` → enclosing `@DataGrid` |
 
