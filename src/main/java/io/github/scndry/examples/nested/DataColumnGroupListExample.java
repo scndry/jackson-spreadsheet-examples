@@ -17,7 +17,9 @@ import java.util.List;
 /**
  * Invoice / order-receipt layout — line items grouped under an "Items"
  * header, with order-level fields ({@code id}, {@code customer}, totals)
- * vertically merged across all line-item rows.
+ * vertically merged across all line-item rows. Round-trips back into
+ * {@code List<Order>} via {@link #read(File)} — the {@code id} column's
+ * {@code anchor = true} tells the reader where each outer record begins.
  *
  * <p>{@code @DataColumnGroup} on a {@code List<NestedType>} field promotes
  * the list to its own header row that spans every flattened element column.
@@ -51,7 +53,7 @@ public class DataColumnGroupListExample {
     // multi-row header and merge cell boundaries are invisible in PNG renders without them.
     @DataGrid(columnStyle = "border", columnHeaderStyle = "border", groupHeaderStyle = "border")
     public static class Order {
-        @DataColumn(value = "id", merge = OptBoolean.TRUE)
+        @DataColumn(value = "id", anchor = true, merge = OptBoolean.TRUE)
         private int id;
         @DataColumn(value = "customer", merge = OptBoolean.TRUE)
         private String customer;
@@ -93,5 +95,10 @@ public class DataColumnGroupListExample {
                 .cellStyle("border").border().thin().end();
         var mapper = SpreadsheetMapper.builder().stylesBuilder(styles).build();
         mapper.writeValue(file, orders, Order.class);
+    }
+
+    public static List<Order> read(File file) throws Exception {
+        var mapper = new SpreadsheetMapper();
+        return mapper.readValues(file, Order.class);
     }
 }
